@@ -28,19 +28,19 @@ class EventProcessing implements IEventProcessing {
     @Override
     public HashMap<LocalDateTime, Event> add(Event event) {
 
-        events.put(event.getDate(), event);
+        this.events.put(event.getDate(), event);
 
-        return events;
+        return this.events;
     }
 
     @Override
     public HashMap<LocalDateTime, Event> delete(LocalDateTime dateTime) throws IOException {
 
-        if (events.containsKey(dateTime)) {
-            events.remove(dateTime);
+        if (this.events.containsKey(dateTime)) {
+            this.events.remove(dateTime);
         } else {
             System.out.println("This event does not exist!\n");
-            events = delete(InputData.inputDateFromConsole());
+            this.events = delete(InputData.inputDateFromConsole());
         }
         return this.events;
     }
@@ -52,7 +52,7 @@ class EventProcessing implements IEventProcessing {
 
         LocalDateTime dateTime = InputData.inputDateFromConsole();
 
-        if (events.containsKey(dateTime)) {
+        if (this.events.containsKey(dateTime)) {
             Event event = null;
             do {
                 choice = InputData.editMenu();
@@ -63,10 +63,10 @@ class EventProcessing implements IEventProcessing {
                         String newDate = InputData.inputFromConsole();
 
                         LocalDateTime parseDate = Validator.parseDate(newDate);
-                        event = events.get(dateTime);
+                        event = this.events.get(dateTime);
                         event.setDate(parseDate);
-                        events.remove(dateTime);
-                        events.put(parseDate, event);
+                        this.events.remove(dateTime);
+                        this.events.put(parseDate, event);
                         break;
                     case 2:
                         Type newType;
@@ -82,10 +82,10 @@ class EventProcessing implements IEventProcessing {
                                 System.out.println(e.getMessage());
                             }
                         }
-                        event = events.get(dateTime);
+                        event = this.events.get(dateTime);
                         event.setType(newType);
-                        events.remove(dateTime);
-                        events.put(dateTime, event);
+                        this.events.remove(dateTime);
+                        this.events.put(dateTime, event);
                         break;
                     case 3:
                         Marker newMarker;
@@ -101,26 +101,26 @@ class EventProcessing implements IEventProcessing {
                                 System.out.println(e.getMessage());
                             }
                         }
-                        event = events.get(dateTime);
+                        event = this.events.get(dateTime);
                         event.setMarker(newMarker);
-                        events.remove(dateTime);
-                        events.put(dateTime, event);
+                        this.events.remove(dateTime);
+                        this.events.put(dateTime, event);
                         break;
                     case 4:
                         System.out.println("Enter new description:");
                         String newDescription = InputData.inputFromConsole();
-                        event = events.get(dateTime);
+                        event = this.events.get(dateTime);
                         event.setDescription(newDescription);
-                        events.remove(dateTime);
-                        events.put(dateTime, event);
+                        this.events.remove(dateTime);
+                        this.events.put(dateTime, event);
                         break;
                 }
             } while (choice != 5);
         } else {
             System.out.println("This event does not exist!\n");
-            events = delete(InputData.inputDateFromConsole());
+            this.events = delete(InputData.inputDateFromConsole());
         }
-        return events;
+        return this.events;
     }
 
     @Override
@@ -138,7 +138,7 @@ class EventProcessing implements IEventProcessing {
         System.out.format("\nDate: %s-%s-%s\n", day, month.toUpperCase(), year);
         OutputData.printTable();
 
-        for (Map.Entry<LocalDateTime, Event> event : events.entrySet()) {
+        for (Map.Entry<LocalDateTime, Event> event : this.events.entrySet()) {
 
             LocalDateTime monthCalendar = event.getKey();
 
@@ -163,7 +163,7 @@ class EventProcessing implements IEventProcessing {
         System.out.format("\nDate: %s-%s\n", month.toUpperCase(), year);
         OutputData.printTable();
 
-        for (Map.Entry<LocalDateTime, Event> event : events.entrySet()) {
+        for (Map.Entry<LocalDateTime, Event> event : this.events.entrySet()) {
 
             LocalDateTime monthCalendar = event.getKey();
 
