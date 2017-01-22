@@ -48,7 +48,7 @@ public class Main {
                         eventProcessing.printMonthCalendar();
                         break;
                     case 8:
-                        System.out.println("Do you want to save changes to the file");
+                        System.out.println("Do you want to save changes to the file?");
                         System.out.println("Enter Yes or No:");
                         String str = InputData.inputFromConsole().toUpperCase();
                         if (str.equals("YES")) {

@@ -15,7 +15,6 @@ public class FileHandler {
               for (Map.Entry<LocalDateTime, Event> event : events.entrySet()) {
                   String jsonLine = gson.toJson(event.getValue()) + "\n";
                   bw.write(jsonLine);
-
               }
               bw.close();
           }

@@ -98,7 +98,6 @@ public class InputData {
         int command;
 
         System.out.println("Which one do you want to edit?\n");
-        System.out.println("Edit:\n");
         System.out.println("1. Date");
         System.out.println("2. Type");
         System.out.println("3. Marker");
